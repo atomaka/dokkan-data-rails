@@ -1,0 +1,13 @@
+nav
+  .container
+    .nav-wrapper
+      a href="#" class="brand-logo" DBZDokkan
+      a href="#" data-activates="mobile" class="button-collapse"
+        i class="material-icons" menu
+      ul.right.hide-on-med-and-down
+      ul#mobile.side-nav
+      ul.right
+        - if logged_in?
+          li= link_to 'Logout', logout_path, method: :delete
+        - else
+          li= link_to 'Login', '/auth/reddit'
