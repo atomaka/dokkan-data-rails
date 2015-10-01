@@ -1,13 +1,15 @@
-nav
+nav.bottom-spacer
   .container
     .nav-wrapper
-      a href="#" class="brand-logo" DBZDokkan
-      a href="#" data-activates="mobile" class="button-collapse"
-        i class="material-icons" menu
-      ul.right.hide-on-med-and-down
+      a.brand-logo href="/" DBZDokkan
+      a.button-collapse href="#" data-activates="mobile"
+        i.material-icons menu
       ul#mobile.side-nav
+        li= link_to 'Links', links_path
       ul.right
         - if logged_in?
           li= link_to 'Logout', logout_path, method: :delete
         - else
           li= link_to 'Login', '/auth/reddit'
+      ul.right.hide-on-med-and-down
+        li= link_to 'Links', links_path

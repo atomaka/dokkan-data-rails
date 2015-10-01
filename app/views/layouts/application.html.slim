@@ -11,8 +11,8 @@ html
     = csrf_meta_tags
 
   body
+    == render 'flash_messages', flash: flash
     == render 'navbar'
 
     .container
-      == render 'flash_messages', flash: flash
       = yield

@@ -1,0 +1,24 @@
+.row
+  .col.s12.right-align
+    = link_to 'New Link', new_link_path, class: 'btn'
+
+.row
+  .col.s12
+    table.bordered.striped.highlight.responsive-table
+      thead
+        tr
+          th Name
+          th Description
+          th Actions
+      tbody
+        - @links.each do |link|
+          tr
+            td= link.name
+            td= link.description
+            td
+              = link_to icon(:subject), edit_link_path(link)
+              = link_to icon(:delete), link_path(link), method: :delete
+
+.row
+  .col.s12
+    = link_to 'New Link', new_link_path, class: 'btn'
