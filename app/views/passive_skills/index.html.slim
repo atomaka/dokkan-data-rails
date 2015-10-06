@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    .pull-right
+      = link_to 'New Passive Skill', new_passive_skill_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Description
+          th Actions
+      tbody
+        - @passive_skills.each do |passive_skill|
+          tr
+            td= passive_skill.name
+            td= passive_skill.description
+            td
+              = link_to glyph('edit', classes: 'control-icon'), edit_passive_skill_path(passive_skill)
+              = link_to glyph('trash', classes: 'control-icon'), passive_skill_path(passive_skill), method: :delete
+
+.row
+  .col-md-12
+    = link_to 'New Passive Skill', new_passive_skill_path, class: 'btn btn-primary'

@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    .pull-right
+      = link_to 'New Character', new_character_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Actions
+      tbody
+        - @characters.each do |character|
+          tr
+            td= character.name
+            td
+              = link_to glyph('edit', classes: 'control-icon'), edit_character_path(character)
+              = link_to glyph('trash', classes: 'control-icon'), character_path(character), method: :delete
+
+.row
+  .col-md-12
+    = link_to 'New Character', new_character_path, class: 'btn btn-primary'

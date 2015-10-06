@@ -11,9 +11,97 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001151519) do
+ActiveRecord::Schema.define(version: 20151007164606) do
+
+  create_table "awaken_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "rarity_id"
+    t.integer  "type_id"
+    t.integer  "leader_skill_id"
+    t.integer  "passive_skill_id"
+    t.integer  "super_attack_id"
+    t.integer  "dokkan_id"
+    t.string   "prefix"
+    t.string   "gameid",           default: "0000000"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "awaken_type_id"
+  end
+
+  add_index "cards", ["awaken_type_id"], name: "index_cards_on_awaken_type_id"
+  add_index "cards", ["character_id"], name: "index_cards_on_character_id"
+  add_index "cards", ["dokkan_id"], name: "index_cards_on_dokkan_id"
+  add_index "cards", ["leader_skill_id"], name: "index_cards_on_leader_skill_id"
+  add_index "cards", ["passive_skill_id"], name: "index_cards_on_passive_skill_id"
+  add_index "cards", ["rarity_id"], name: "index_cards_on_rarity_id"
+  add_index "cards", ["super_attack_id"], name: "index_cards_on_super_attack_id"
+  add_index "cards", ["type_id"], name: "index_cards_on_type_id"
+
+  create_table "cards_links", id: false, force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "link_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cards_links", ["card_id"], name: "index_cards_links_on_card_id"
+  add_index "cards_links", ["link_id"], name: "index_cards_links_on_link_id"
+
+  create_table "characters", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "leader_skills", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "links", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "medals", force: :cascade do |t|
+    t.string   "name"
+    t.text     "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "passive_skills", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "rarities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "super_attacks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "types", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false

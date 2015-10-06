@@ -1,7 +1,32 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+types = [
+  ['Physical', 'PHY', 'yellow'],
+  ['Intellect', 'INT', 'purple'],
+  ['Technique', 'TEQ', 'green'],
+  ['Agility', 'AGL', 'blue'],
+  ['Strength', 'STR', 'red'],
+]
+
+rarities = [
+  ['Normal', 'N'],
+  ['Rare', 'R'],
+  ['Super Rare', 'SR'],
+  ['Super Super Rare', 'SSR'],
+  ['Ultra Rare', 'UR'],
+]
+
+awaken_types = [
+  'Super',
+  'Extreme',
+]
+
+types.each do |description, name|
+  Type.create(name: name, description: description)
+end
+
+rarities.each do |description, name|
+  Rarity.create(name: name, description: description)
+end
+
+awaken_types.each do |name|
+  AwakenType.create(name: name)
+end

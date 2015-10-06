@@ -16,6 +16,10 @@ module ApplicationHelper
     content_tag(:i, class: "glyphicon glyphicon-#{icon} " + classes) {}
   end
 
+  def login_path(provider)
+    "/auth/#{provider.to_s}"
+  end
+
   private
 
   def bootstrap_classes

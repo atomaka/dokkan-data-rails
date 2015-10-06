@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    .pull-right
+      = link_to 'New Card', new_card_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Prefix
+          th Name
+          th Actions
+      tbody
+        - @cards.each do |card|
+          tr
+            td= card.prefix
+            td= card.name
+            td
+              = link_to glyph('edit', classes: 'control-icon'), edit_card_path(card)
+              = link_to glyph('trash', classes: 'control-icon'), card_path(card), method: :delete
+
+.row
+  .col-md-12
+    = link_to 'New Card', new_card_path, class: 'btn btn-primary'

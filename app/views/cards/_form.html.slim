@@ -1,0 +1,31 @@
+= simple_form_for @card do |f|
+  .form-inputs
+    .row
+      .col-md-4
+        = f.input :gameid, label: 'Game ID Number'
+      .col-md-4
+        = f.input :prefix
+      .col-md-4
+        = f.association :character
+    .row
+      .col-md-4
+        = f.association :rarity
+      .col-md-4
+        = f.association :type
+      .col-md-4
+        = f.association :awaken_type
+    .row
+      .col-md-6
+        = f.association :leader_skill
+      .col-md-6
+        = f.association :passive_skill
+    .row
+      .col-md-6
+        = f.association :super_attack
+    .row
+      .col-md-12
+        = f.label :links
+        div
+          = f.association :links, as: :check_boxes, item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false
+  .form-actions
+    = f.button :button

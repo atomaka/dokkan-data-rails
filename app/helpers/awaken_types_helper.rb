@@ -1,0 +1,2 @@
+module AwakenTypesHelper
+end

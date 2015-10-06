@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    .pull-right
+      = link_to 'New Awaken Type', new_awaken_type_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Actions
+      tbody
+        - @awaken_types.each do |awaken_type|
+          tr
+            td= awaken_type.name
+            td
+              = link_to glyph('edit', classes: 'control-icon'), edit_awaken_type_path(awaken_type)
+              = link_to glyph('trash', classes: 'control-icon'), awaken_type_path(awaken_type), method: :delete
+
+.row
+  .col-md-12
+    = link_to 'New Awaken Type', new_awaken_type_path, class: 'btn btn-primary'

@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    .pull-right
+      = link_to 'New Super Attack', new_super_attack_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Description
+          th Actions
+      tbody
+        - @super_attacks.each do |super_attack|
+          tr
+            td= super_attack.name
+            td= super_attack.description
+            td
+              = link_to glyph('edit', classes: 'control-icon'), edit_super_attack_path(super_attack)
+              = link_to glyph('trash', classes: 'control-icon'), super_attack_path(super_attack), method: :delete
+
+.row
+  .col-md-12
+    = link_to 'New Super Attack', new_super_attack_path, class: 'btn btn-primary'

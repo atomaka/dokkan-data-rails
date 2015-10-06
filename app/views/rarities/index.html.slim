@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    .pull-right
+      = link_to 'New Rarity', new_rarity_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Description
+          th Actions
+      tbody
+        - @rarities.each do |rarity|
+          tr
+            td= rarity.name
+            td= rarity.description
+            td
+              = link_to glyph('edit', classes: 'control-icon'), edit_rarity_path(rarity)
+              = link_to glyph('trash', classes: 'control-icon'), rarity_path(rarity), method: :delete
+
+.row
+  .col-md-12
+    = link_to 'New Rarity', new_rarity_path, class: 'btn btn-primary'
