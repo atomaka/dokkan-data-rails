@@ -1,10 +1,11 @@
 .row
-  .col.s12.right-align
-    = link_to 'New Link', new_link_path, class: 'btn'
+  .col-md-12
+    .pull-right
+      = link_to 'New Link', new_link_path, class: 'btn btn-primary'
 
 .row
-  .col.s12
-    table.bordered.striped.highlight.responsive-table
+  .col-md-12
+    table.table.table-striped.table-hover
       thead
         tr
           th Name
@@ -16,9 +17,9 @@
             td= link.name
             td= link.description
             td
-              = link_to icon(:subject), edit_link_path(link)
-              = link_to icon(:delete), link_path(link), method: :delete
+              = link_to glyph('edit', classes: 'control-icon'), edit_link_path(link)
+              = link_to glyph('trash', classes: 'control-icon'), link_path(link), method: :delete
 
 .row
-  .col.s12
-    = link_to 'New Link', new_link_path, class: 'btn'
+  .col-md-12
+    = link_to 'New Link', new_link_path, class: 'btn btn-primary'

@@ -1,6 +1,6 @@
 = simple_form_for @link do |f|
-  .row
-    .col.s12
-        = f.input :name
-        = f.input :description
-        = f.button :button
+  .form-inputs
+    = f.input :name
+    = f.input :description
+  .form-actions
+    = f.button :button
