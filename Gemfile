@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
-gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -16,9 +15,16 @@ gem 'simple_form'
 
 gem 'omniauth-reddit', :git => 'git://github.com/jackdempsey/omniauth-reddit.git'
 
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+  gem 'puma'
+end
+
 group :development, :test do
   gem 'dotenv-rails'
   gem 'byebug'
+  gem 'sqlite3'
 end
 
 group :development do
