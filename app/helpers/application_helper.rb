@@ -20,6 +20,10 @@ module ApplicationHelper
     "/auth/#{provider.to_s}"
   end
 
+  def page_title
+    "#{controller_name.capitalize}: #{action_name.capitalize}"
+  end
+
   private
 
   def bootstrap_classes
