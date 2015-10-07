@@ -8,13 +8,11 @@
     table.table.table-striped.table-hover
       thead
         tr
-          th Name
           th Description
           th Actions
       tbody
         - @leader_skills.each do |leader_skill|
           tr
-            td= leader_skill.name
             td= leader_skill.description
             td
               = link_to glyph('edit', classes: 'control-icon'), edit_leader_skill_path(leader_skill)

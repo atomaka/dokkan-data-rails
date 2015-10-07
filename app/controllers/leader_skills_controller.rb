@@ -42,7 +42,7 @@ class LeaderSkillsController < ApplicationController
   private
 
   def leader_skill_params
-    params.require(:leader_skill).permit(:name, :description)
+    params.require(:leader_skill).permit(:description)
   end
 
   def set_leader_skill
