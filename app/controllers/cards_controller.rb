@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 
   def index
-    @cards = Card.all
+    @cards = Card.includes(:character).all
   end
 
   def show
@@ -42,7 +42,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:prefix, :character_id, :rarity_id, :type_id,
+    params.require(:card).permit(:title, :character_id, :rarity_id, :type_id,
                                  :leader_skill_id, :passive_skill_id,
                                  :super_attack_id, :dokkan_id, :gameid,
                                  :awaken_type_id, :dokkan_id, link_ids: [])

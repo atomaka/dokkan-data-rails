@@ -21,10 +21,10 @@
         = f.association :passive_skill
     .row
       .col-md-6
-        = f.association :super_attack
+        = f.association :super_attack, label_method: :full
     .row
       .col-md-6
-        = f.association :dokkan_card, label_method: :full_name
+        = f.association :dokkan_card, collection: Card.includes(:character).all, label_method: :full_name
     .row
       .col-md-12
         = f.label :links
