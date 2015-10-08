@@ -21,6 +21,8 @@ class Card < ActiveRecord::Base
   validates :type, presence: true
   validates :awaken_type, presence: true
 
+  default_scope { order(:gameid) }
+
   def dokkan?
     dokkan_id != nil
   end
