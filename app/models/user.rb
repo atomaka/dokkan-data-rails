@@ -26,3 +26,13 @@ class User < ActiveRecord::Base
     self.add_role :admin
   end
 end
+
+class GuestUser
+  def admin?
+    false
+  end
+
+  def moderator?
+    false
+  end
+end
