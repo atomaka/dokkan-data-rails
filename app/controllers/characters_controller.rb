@@ -1,19 +1,27 @@
 class CharactersController < ApplicationController
   before_action :set_character, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   def index
     @characters = Character.all
+
+    authorize Character
   end
 
   def show
+    authorize @character
   end
 
   def new
     @character = Character.new
+
+    authorize @character
   end
 
   def create
     @character = Character.new(character_params)
+
+    authorize @character
 
     if @character.save
       redirect_to characters_path, notice: 'Character was created'
@@ -23,9 +31,12 @@ class CharactersController < ApplicationController
   end
 
   def edit
+    authorize @character
   end
 
   def update
+    authorize @character
+
     if @character.update(character_params)
       redirect_to characters_path, notice: 'Character was updated'
     else
@@ -34,6 +45,8 @@ class CharactersController < ApplicationController
   end
 
   def destroy
+    authorize @character
+
     @character.destroy
 
     redirect_to characters_path, notice: 'Character was deleted'

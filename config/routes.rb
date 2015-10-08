@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :rarities
   resources :super_attacks
   resources :types
+  resources :users, except: [:new, :create]
   resources :welcome, only: [:index]
 
   root to: 'welcome#index'

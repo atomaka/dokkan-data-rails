@@ -17,6 +17,10 @@ gem 'omniauth-reddit', :git => 'git://github.com/jackdempsey/omniauth-reddit.git
 
 gem 'active_model_serializers'
 
+# AUTHORIZATION
+gem 'pundit'
+gem 'rolify'
+
 group :production do
   gem 'rails_12factor'
   gem 'pg'

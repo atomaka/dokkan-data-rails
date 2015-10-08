@@ -1,19 +1,27 @@
 class AwakenTypesController < ApplicationController
   before_action :set_awaken_type, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   def index
     @awaken_types = AwakenType.all
+
+    authorize AwakenType
   end
 
   def show
+    authorize @awaken_type
   end
 
   def new
     @awaken_type = AwakenType.new
+
+    authorize @awaken_type
   end
 
   def create
     @awaken_type = AwakenType.new(awaken_type_params)
+
+    authorize @awaken_type
 
     if @awaken_type.save
       redirect_to awaken_types_path, notice: 'Awaken Type was created'
@@ -23,9 +31,12 @@ class AwakenTypesController < ApplicationController
   end
 
   def edit
+    authorize @awaken_type
   end
 
   def update
+    authorize @awaken_type
+
     if @awaken_type.update(awaken_type_params)
       redirect_to awaken_types_path, notice: 'Awaken Type was updated'
     else

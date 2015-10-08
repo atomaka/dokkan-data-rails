@@ -1,7 +1,8 @@
-.row
-  .col-md-12
-    .pull-right
-      = link_to 'New Rarity', new_rarity_path, class: 'btn btn-primary'
+- if policy(:rarity).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Rarity', new_rarity_path, class: 'btn btn-primary'
 
 .row
   .col-md-12
@@ -17,9 +18,12 @@
             td= rarity.name
             td= rarity.description
             td
-              = link_to glyph('edit', classes: 'control-icon'), edit_rarity_path(rarity)
-              = link_to glyph('trash', classes: 'control-icon'), rarity_path(rarity), method: :delete
+              - if policy(:rarity).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_rarity_path(rarity)
+              - if policy(:rarity).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), rarity_path(rarity), method: :delete
 
-.row
-  .col-md-12
-    = link_to 'New Rarity', new_rarity_path, class: 'btn btn-primary'
+- if policy(:rarity).new?
+  .row
+    .col-md-12
+      = link_to 'New Rarity', new_rarity_path, class: 'btn btn-primary'

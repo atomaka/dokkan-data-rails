@@ -1,7 +1,8 @@
-.row
-  .col-md-12
-    .pull-right
-      = link_to 'New Type', new_type_path, class: 'btn btn-primary'
+- if policy(:type).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Type', new_type_path, class: 'btn btn-primary'
 
 .row
   .col-md-12
@@ -17,9 +18,12 @@
             td= type.name
             td= type.description
             td
-              = link_to glyph('edit', classes: 'control-icon'), edit_type_path(type)
-              = link_to glyph('trash', classes: 'control-icon'), type_path(type), method: :delete
+              - if policy(:type).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_type_path(type)
+              - if policy(:type).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), type_path(type), method: :delete
 
-.row
-  .col-md-12
-    = link_to 'New Type', new_type_path, class: 'btn btn-primary'
+- if policy(:type).new?
+  .row
+    .col-md-12
+      = link_to 'New Type', new_type_path, class: 'btn btn-primary'

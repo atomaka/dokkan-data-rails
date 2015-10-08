@@ -1,7 +1,8 @@
-.row
-  .col-md-12
-    .pull-right
-      = link_to 'New Card', new_card_path, class: 'btn btn-primary'
+- if policy(:card).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Card', new_card_path, class: 'btn btn-primary'
 
 .row
   .col-md-12
@@ -17,9 +18,12 @@
             td= card.name
             td= card.title
             td
-              = link_to glyph('edit', classes: 'control-icon'), edit_card_path(card)
-              = link_to glyph('trash', classes: 'control-icon'), card_path(card), method: :delete
+              - if policy(:card).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_card_path(card)
+              - if policy(:card).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), card_path(card), method: :delete
 
-.row
-  .col-md-12
-    = link_to 'New Card', new_card_path, class: 'btn btn-primary'
+- if policy(:card).new?
+  .row
+    .col-md-12
+      = link_to 'New Card', new_card_path, class: 'btn btn-primary'
