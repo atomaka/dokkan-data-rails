@@ -16,7 +16,7 @@
         = f.association :awaken_type
     .row
       .col-md-6
-        = f.association :leader_skill
+        = f.association :leader_skill, label_method: :description
       .col-md-6
         = f.association :passive_skill
     .row
