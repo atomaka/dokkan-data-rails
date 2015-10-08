@@ -15,6 +15,8 @@ gem 'simple_form'
 
 gem 'omniauth-reddit', :git => 'git://github.com/jackdempsey/omniauth-reddit.git'
 
+gem 'active_model_serializers'
+
 group :production do
   gem 'rails_12factor'
   gem 'pg'
