@@ -23,6 +23,9 @@
       .col-md-6
         = f.association :super_attack
     .row
+      .col-md-6
+        = f.association :dokkan_card, label_method: :full_name
+    .row
       .col-md-12
         = f.label :links
         div

@@ -45,7 +45,7 @@ class CardsController < ApplicationController
     params.require(:card).permit(:prefix, :character_id, :rarity_id, :type_id,
                                  :leader_skill_id, :passive_skill_id,
                                  :super_attack_id, :dokkan_id, :gameid,
-                                 :awaken_type_id, link_ids: [])
+                                 :awaken_type_id, :dokkan_id, link_ids: [])
   end
 
   def set_card

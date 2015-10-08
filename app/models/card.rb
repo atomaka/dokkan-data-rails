@@ -6,7 +6,7 @@ class Card < ActiveRecord::Base
   belongs_to :passive_skill
   belongs_to :super_attack
   belongs_to :awaken_type
-  has_one :dokkan_card, class_name: 'Card', foreign_key: :dokkan_id
+  belongs_to :dokkan_card, class_name: 'Card', foreign_key: :dokkan_id
 
   has_and_belongs_to_many :links
 
@@ -22,6 +22,14 @@ class Card < ActiveRecord::Base
   validates :awaken_type, presence: true
 
   def dokkan?
-    self.dokkan_id != nil
+    dokkan_id != nil
+  end
+
+  def full_name
+    "#{prefix} #{character.name}"
+  end
+
+  def icon
+    "card_#{gameid}_thumb.png"
   end
 end
