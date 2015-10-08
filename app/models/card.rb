@@ -12,7 +12,7 @@ class Card < ActiveRecord::Base
 
   delegate :name, to: :character, prefix: false
 
-  validates :prefix, presence: true
+  validates :title, presence: true
   validates :character, presence: true
   validates :gameid, presence: true,
                      numericality: { only_integer: true },
@@ -26,7 +26,7 @@ class Card < ActiveRecord::Base
   end
 
   def full_name
-    "#{prefix} #{character.name}"
+    "#{title} #{character.name}"
   end
 
   def icon

@@ -8,14 +8,14 @@
     table.table.table-striped.table-hover
       thead
         tr
-          th Prefix
           th Name
+          th Title
           th Actions
       tbody
         - @cards.each do |card|
           tr
-            td= card.prefix
             td= card.name
+            td= card.title
             td
               = link_to glyph('edit', classes: 'control-icon'), edit_card_path(card)
               = link_to glyph('trash', classes: 'control-icon'), card_path(card), method: :delete

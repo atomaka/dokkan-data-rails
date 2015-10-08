@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007201555) do
+ActiveRecord::Schema.define(version: 20151008163922) do
 
   create_table "awaken_types", force: :cascade do |t|
     t.string   "name"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20151007201555) do
     t.integer  "passive_skill_id"
     t.integer  "super_attack_id"
     t.integer  "dokkan_id"
-    t.string   "prefix"
+    t.string   "title"
     t.string   "gameid",           default: "0000000"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
