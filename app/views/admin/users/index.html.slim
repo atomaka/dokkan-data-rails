@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Nickname
+          th Actions
+      tbody
+        - @users.each do |user|
+          tr
+            td= user.nickname
+            td
+              - if policy(:user).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_admin_user_path(user)
+              - if policy(:user).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_user_path(user), method: :delete

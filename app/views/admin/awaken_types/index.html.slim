@@ -1,0 +1,27 @@
+- if policy(:awaken_type).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Awaken Type', new_admin_awaken_type_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Actions
+      tbody
+        - @awaken_types.each do |awaken_type|
+          tr
+            td= awaken_type.name
+            td
+              - if policy(:awaken_type).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_admin_awaken_type_path(awaken_type)
+              - if policy(:awaken_type).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_awaken_type_path(awaken_type), method: :delete
+
+- if policy(:awaken_type).new?
+  .row
+    .col-md-12
+      = link_to 'New Awaken Type', new_admin_awaken_type_path, class: 'btn btn-primary'

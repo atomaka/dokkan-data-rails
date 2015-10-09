@@ -1,0 +1,29 @@
+- if policy(:link).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Link', new_admin_link_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Description
+          th Actions
+      tbody
+        - @links.each do |link|
+          tr
+            td= link.name
+            td= link.description
+            td
+              - if policy(:link).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_admin_link_path(link)
+              - if policy(:link).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_link_path(link), method: :delete
+
+- if policy(:link).new?
+  .row
+    .col-md-12
+      = link_to 'New Link', new_admin_link_path, class: 'btn btn-primary'

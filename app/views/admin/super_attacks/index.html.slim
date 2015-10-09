@@ -1,0 +1,29 @@
+- if policy(:super_attack).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Super Attack', new_admin_super_attack_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Description
+          th Actions
+      tbody
+        - @super_attacks.each do |super_attack|
+          tr
+            td= super_attack.name
+            td= super_attack.description
+            td
+              - if policy(:super_attack).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_admin_super_attack_path(super_attack)
+              - if policy(:super_attack).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_super_attack_path(super_attack), method: :delete
+
+- if policy(:super_attack).new?
+  .row
+    .col-md-12
+      = link_to 'New Super Attack', new_admin_super_attack_path, class: 'btn btn-primary'

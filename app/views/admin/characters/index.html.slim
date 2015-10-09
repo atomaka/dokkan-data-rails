@@ -1,0 +1,27 @@
+- if policy(:character).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Character', new_admin_character_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Actions
+      tbody
+        - @characters.each do |character|
+          tr
+            td= character.name
+            td
+              - if policy(:character).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_admin_character_path(character)
+              - if policy(:character).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_character_path(character), method: :delete
+
+- if policy(:character).new?
+  .row
+    .col-md-12
+      = link_to 'New Character', new_admin_character_path, class: 'btn btn-primary'

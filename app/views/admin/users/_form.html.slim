@@ -1,0 +1,5 @@
+= simple_form_for [:admin, @user] do |f|
+  .form-inputs
+    = f.association :roles, as: :check_boxes
+  .form-actions
+    = f.button :button

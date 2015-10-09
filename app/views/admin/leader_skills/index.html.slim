@@ -1,0 +1,27 @@
+- if policy(:leader_skill).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Leader Skill', new_admin_leader_skill_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Description
+          th Actions
+      tbody
+        - @leader_skills.each do |leader_skill|
+          tr
+            td= leader_skill.description
+            td
+              - if policy(:leader_skill).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_admin_leader_skill_path(leader_skill)
+              - if policy(:leader_skill).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_leader_skill_path(leader_skill), method: :delete
+
+- if policy(:leader_skill).new?
+  .row
+    .col-md-12
+      = link_to 'New Leader Skill', new_admin_leader_skill_path, class: 'btn btn-primary'

@@ -3,19 +3,26 @@ Rails.application.routes.draw do
   get 'auth/failure', to: 'sessions#failure'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :awaken_types
-  resources :cards
-  resources :characters
-  resources :leader_skills
-  resources :links
-  resources :passive_skills
-  resources :rarities
-  resources :super_attacks
-  resources :types
-  resources :users, except: [:new, :create]
-  resources :welcome, only: [:index]
+  get '/welcome', to: 'welcome#index'
 
   root to: 'welcome#index'
+
+  namespace :admin do
+    root to: 'dashboard#index'
+
+    get '/dashboard', to: 'dashboard#index'
+
+    resources :awaken_types
+    resources :cards
+    resources :characters
+    resources :leader_skills
+    resources :links
+    resources :passive_skills
+    resources :rarities
+    resources :super_attacks
+    resources :types
+    resources :users, except: [:new, :create]
+  end
 
   namespace :api do
     namespace :v1 do

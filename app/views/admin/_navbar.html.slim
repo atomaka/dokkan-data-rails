@@ -1,0 +1,49 @@
+.navbar.navbar-default.navbar-static-top.navbar-custom
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed type='button' data-toggle='collapse' data-target='.navbar-collapse'
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'DBZDokkan', root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li= link_to 'Administration', admin_root_path
+      ul.nav.navbar-nav.navbar-right
+        - if policy(:link).index? || policy(:leader_skill).index? || policy(:passive_skill).index? || policy(:super_attack).index?
+          li.dropdown
+            a href='#' class='dropdown-toggle' data-toggle='dropdown'
+              = 'Abilities '
+              span class='caret'
+            ul.dropdown-menu
+              - if policy(:link).index?
+                li= link_to 'Links', admin_links_path
+              - if policy(:leader_skill).index?
+                li= link_to 'Leader Skills', admin_leader_skills_path
+              - if policy(:passive_skill).index?
+                li= link_to 'Passive Skills', admin_passive_skills_path
+              - if policy(:super_attack).index?
+                li= link_to 'Super Attacks', admin_super_attacks_path
+        - if policy(:card).index?
+          li= nav_link_to 'Cards', admin_cards_path
+        - if policy(:character).index?
+          li= nav_link_to 'Characters', admin_characters_path
+        - if policy(:awaken_type).index? || policy(:rarity).index? || policy(:type).index?
+          li.dropdown
+            a href='#' class='dropdown-toggle' data-toggle='dropdown'
+              = 'Others '
+              span class='caret'
+            ul.dropdown-menu
+              - if policy(:awaken_type).index?
+                li= link_to 'Awaken Types', admin_awaken_types_path
+              - if policy(:rarity).index?
+                li= link_to 'Rarities', admin_rarities_path
+              - if policy(:type).index?
+                li= link_to 'Types', admin_types_path
+        - if policy(:user).index?
+          li= nav_link_to 'Users', admin_users_path
+        - if logged_in?
+          li= link_to 'Log Out', logout_path, method: :delete
+        - else
+          li= link_to 'Log In', login_path(:reddit)
