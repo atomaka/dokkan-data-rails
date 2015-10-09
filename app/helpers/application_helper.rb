@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def page_title
-    "#{controller_name.capitalize}: #{action_name.capitalize}"
+    controller_name.to_s.humanize.titleize
   end
 
   private
