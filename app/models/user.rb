@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_paper_trail
   rolify
 
   after_create :set_admin, if: :first_user?
