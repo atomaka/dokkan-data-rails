@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   rolify
 
-  after_create :set_admin, if: Proc.new { User.count == 1 }
+  after_create :set_admin, if: :first_user?
 
   def self.create_with_omniauth(auth)
     where(provider: auth[:provider], uid: auth[:uid]).first_or_create do |user|
@@ -18,6 +18,12 @@ class User < ActiveRecord::Base
 
   def moderator?
     self.has_role?(:moderator)
+  end
+
+  def first_user?
+    User.unscoped do
+      User.count == 1
+    end
   end
 
   private
