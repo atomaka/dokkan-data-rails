@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th ID
+          th Event
+          th Date
+          th Modified By
+      tbody
+        - versions.each do |version|
+          tr
+            td= link_to version.id, admin_version_path(version)
+            td= version.event
+            td= version.created_at
+            td= User.find(version.version_author).nickname

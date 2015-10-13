@@ -32,6 +32,8 @@ class Admin::CardsController < Admin::BaseController
 
   def edit
     authorize @card
+
+    @versions = @card.versions
   end
 
   def update

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :super_attacks
     resources :types
     resources :users, except: [:new, :create]
+    resources :versions, only: [:show]
   end
 
   namespace :api do
