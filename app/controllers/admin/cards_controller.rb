@@ -24,7 +24,8 @@ class Admin::CardsController < Admin::BaseController
     authorize @card
 
     if @card.save
-      redirect_to admin_cards_path, notice: 'Card was created'
+      redirect_to admin_cards_path,
+        notice: "Card was created. #{undo_link(@card)}"
     else
       render :new
     end
@@ -40,7 +41,8 @@ class Admin::CardsController < Admin::BaseController
     authorize @card
 
     if @card.update(card_params)
-      redirect_to admin_cards_path, notice: 'Card was updated'
+      redirect_to admin_cards_path,
+        notice: "Card was updated. #{undo_link(@card)}"
     else
       render :edit
     end
@@ -51,7 +53,8 @@ class Admin::CardsController < Admin::BaseController
 
     @card.destroy
 
-    redirect_to admin_cards_path, notice: 'Card was deleted'
+    redirect_to admin_cards_path,
+      notice: "Card was deleted. #{undo_link(@card)}"
   end
 
   private
