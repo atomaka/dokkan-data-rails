@@ -1,0 +1,42 @@
+.row
+  .col-md-4
+    strong Game ID Number: 
+    = @card.gameid
+  .col-md-4
+    strong Title: 
+    = @card.title
+  .col-md-4
+    strong Character: 
+    = @card.character.name
+.row
+  .col-md-4
+    strong Rarity: 
+    = @card.rarity.name
+  .col-md-4
+    strong Type: 
+    = @card.type.name
+  .col-md-4
+    strong Awaken Type: 
+    = @card.awaken_type.name
+.row
+  .col-md-6
+    strong Leader Skill: 
+    = @card.leader_skill.description
+  .col-md-6
+    strong Passive Skill: 
+    = @card.passive_skill.name
+.row
+  .col-md-12
+    strong Super Attack: 
+    = "#{@card.super_attack.name} - #{@card.super_attack.description}"
+.row
+  .col-md-6
+    strong Dokkan Card: 
+    - if @card.dokkan_card
+      = @card.dokkan_card.full_name
+.row
+  .col-md-12
+    strong Links: 
+    ul
+    - @card.links.each do |link|
+      li= link.name

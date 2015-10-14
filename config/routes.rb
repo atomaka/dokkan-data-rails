@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
     get '/dashboard', to: 'dashboard#index'
 
+    post '/versions/revert', to: 'versions#revert', as: 'revert_version'
+
     resources :awaken_types
     resources :cards
     resources :characters
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
     resources :super_attacks
     resources :types
     resources :users, except: [:new, :create]
+    resources :versions, only: [:show]
   end
 
   namespace :api do
