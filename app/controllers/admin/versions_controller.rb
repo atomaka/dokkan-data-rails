@@ -11,6 +11,6 @@ class Admin::VersionsController < Admin::BaseController
   private
 
   def set_version
-    @version = PaperTrail::Version.find(params[:id]).reify
+    @version = PaperTrail::Version.find(params[:id]).reify(has_one: true)
   end
 end
