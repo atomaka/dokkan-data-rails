@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014121824) do
+ActiveRecord::Schema.define(version: 20151014143908) do
 
   create_table "awaken_types", force: :cascade do |t|
     t.string   "name"
@@ -19,29 +19,8 @@ ActiveRecord::Schema.define(version: 20151014121824) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cards", force: :cascade do |t|
-    t.integer  "character_id"
-    t.integer  "rarity_id"
-    t.integer  "type_id"
-    t.integer  "leader_skill_id"
-    t.integer  "passive_skill_id"
-    t.integer  "super_attack_id"
-    t.integer  "dokkan_id"
-    t.string   "title"
-    t.string   "gameid",           default: "0000000"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "awaken_type_id"
-  end
-
-  add_index "cards", ["awaken_type_id"], name: "index_cards_on_awaken_type_id"
-  add_index "cards", ["character_id"], name: "index_cards_on_character_id"
-  add_index "cards", ["dokkan_id"], name: "index_cards_on_dokkan_id"
-  add_index "cards", ["leader_skill_id"], name: "index_cards_on_leader_skill_id"
-  add_index "cards", ["passive_skill_id"], name: "index_cards_on_passive_skill_id"
-  add_index "cards", ["rarity_id"], name: "index_cards_on_rarity_id"
-  add_index "cards", ["super_attack_id"], name: "index_cards_on_super_attack_id"
-  add_index "cards", ["type_id"], name: "index_cards_on_type_id"
+# Could not dump table "cards" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "cards_links", id: false, force: :cascade do |t|
     t.integer  "card_id"

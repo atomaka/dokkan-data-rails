@@ -61,7 +61,7 @@ class Admin::CardsController < Admin::BaseController
 
   def card_params
     params.require(:card).permit(:title, :character_id, :rarity_id, :type_id,
-                                 :leader_skill_id, :passive_skill_id,
+                                 :leader_skill_id, :passive_skill_id, :verified,
                                  :super_attack_id, :dokkan_id, :gameid,
                                  :awaken_type_id, :dokkan_id, link_ids: [])
   end

@@ -30,5 +30,9 @@
         = f.label :links
         div
           = f.association :links, as: :check_boxes, item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false
+    .row
+      .col-md-12
+        = f.label 'Verification'
+        = f.input :verified, as: :boolean, item_wrapper_tag: nil, item_label_class: 'checkbox-inline'
   .form-actions
     = f.button :button
