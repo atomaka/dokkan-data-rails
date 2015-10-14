@@ -70,3 +70,13 @@
 .panel-yellow a:hover {
   color: #df8a13;
 }
+
+.img-full {
+  position: absolute;
+  left: -9999px;
+}
+
+#preview {
+  position: absolute;
+  display: none;
+}

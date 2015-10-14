@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014143908) do
+ActiveRecord::Schema.define(version: 20151014155435) do
 
   create_table "awaken_types", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20151014143908) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "evidences", force: :cascade do |t|
+    t.string   "screenshot_file_name"
+    t.string   "screenshot_content_type"
+    t.integer  "screenshot_file_size"
+    t.datetime "screenshot_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "card_id"
+  end
+
+  add_index "evidences", ["card_id"], name: "index_evidences_on_card_id"
 
   create_table "leader_skills", force: :cascade do |t|
     t.string   "description"

@@ -12,6 +12,8 @@ class Card < ActiveRecord::Base
 
   has_and_belongs_to_many :links
 
+  has_many :evidences
+
   delegate :name, to: :character, prefix: false
 
   validates :title, presence: true

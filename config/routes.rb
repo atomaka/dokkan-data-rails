@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :awaken_types
     resources :cards
     resources :characters
+    resources :evidences, except: [:show, :edit, :update]
     resources :leader_skills
     resources :links
     resources :passive_skills

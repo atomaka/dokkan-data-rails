@@ -64,6 +64,10 @@ GEM
       uniform_notifier (~> 1.9.0)
     byebug (6.0.2)
     choice (0.2.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -99,6 +103,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.2)
+    mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.8.1)
     multi_json (1.11.2)
@@ -122,6 +127,12 @@ GEM
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1)
+    paperclip (4.3.1)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (= 0.3.0)
     pg (0.18.3)
     puma (2.14.0)
     pundit (1.0.1)
@@ -231,6 +242,7 @@ DEPENDENCIES
   jquery-rails
   omniauth-reddit!
   paper_trail
+  paperclip (~> 4.3)
   pg
   puma
   pundit

@@ -1,0 +1,26 @@
+- if policy(:evidence).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Evidence', new_admin_evidence_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Screenshot
+          th Actions
+      tbody
+        - @evidences.each do |evidence|
+          tr
+            td= image_tag evidence.screenshot.url(:thumb)
+            td
+              = link_to glyph('eye-open', classes: 'control-icon'), evidence.screenshot.url(:original, false)
+              - if policy(:evidence).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_evidence_path(evidence), method: :delete
+
+- if policy(:evidence).new?
+  .row
+    .col-md-12
+      = link_to 'New Evidence', new_admin_evidence_path, class: 'btn btn-primary'

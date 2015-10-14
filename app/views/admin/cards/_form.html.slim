@@ -32,6 +32,16 @@
           = f.association :links, as: :check_boxes, item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false
     .row
       .col-md-12
+      = f.label :evidences
+      - unless @card.new_record?
+        div
+          span Current
+          = f.association :evidences, as: :check_boxes, collection: Evidence.for(@card), item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false, label_method: lambda { |evidence| evidence_checkbox_label(evidence) }
+      div
+        span Unused
+        = f.association :evidences, as: :check_boxes, collection: Evidence.unused, item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false, label_method: lambda { |evidence| evidence_checkbox_label(evidence) }
+    .row
+      .col-md-12
         = f.label 'Verification'
         = f.input :verified, as: :boolean, item_wrapper_tag: nil, item_label_class: 'checkbox-inline'
   .form-actions

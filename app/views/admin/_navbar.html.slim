@@ -29,6 +29,8 @@
           li= nav_link_to 'Cards', admin_cards_path
         - if policy(:character).index?
           li= nav_link_to 'Characters', admin_characters_path
+        - if policy(:evidence).index?
+          li= nav_link_to 'Evidence', admin_evidences_path
         - if policy(:awaken_type).index? || policy(:rarity).index? || policy(:type).index?
           li.dropdown
             a href='#' class='dropdown-toggle' data-toggle='dropdown'
