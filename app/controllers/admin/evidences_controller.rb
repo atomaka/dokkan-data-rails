@@ -8,13 +8,11 @@ class Admin::EvidencesController < Admin::BaseController
   end
 
   def create
-    @evidence = Evidence.new(evidence_params)
-
-    if @evidence.save
-      redirect_to admin_evidences_path, notice: 'Evidence was created'
-    else
-      render :new
+    params[:evidence][:screenshot].each do |screenshot|
+      Evidence.new(screenshot: screenshot).save
     end
+
+    redirect_to admin_evidences_path, notice: 'Evidence was created'
   end
 
   def destroy

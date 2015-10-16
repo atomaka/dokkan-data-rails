@@ -1,5 +1,5 @@
-= simple_form_for [:admin, @evidence] do |f|
+= simple_form_for [:admin, @evidence], html: { multipart: true } do |f|
   .form-inputs
-    = f.input :screenshot, as: :file
+    = f.input :screenshot, as: :file, input_html: { multiple: 'multiple' }
   .form-actions
     = f.button :button
