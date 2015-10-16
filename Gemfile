@@ -24,6 +24,7 @@ gem 'pundit'
 gem 'rolify'
 
 group :production do
+  gem 'aws-sdk'
   gem 'rails_12factor'
   gem 'pg'
   gem 'puma'
