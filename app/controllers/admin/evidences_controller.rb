@@ -8,11 +8,19 @@ class Admin::EvidencesController < Admin::BaseController
   end
 
   def create
-    params[:evidence][:screenshot].each do |screenshot|
-      Evidence.new(screenshot: screenshot).save
-    end
+    evidence = params[:evidence][:screenshot]
 
-    redirect_to admin_evidences_path, notice: 'Evidence was created'
+    if evidence.size > 10
+      @evidence = Evidence.new
+      flash.now[:notice] = 'Only 10 evidence can be submitted at once'
+      render :new
+    else
+      evidence.each do |screenshot|
+        Evidence.new(screenshot: screenshot).save
+      end
+
+      redirect_to admin_evidences_path, notice: 'Evidence was created'
+    end
   end
 
   def destroy
