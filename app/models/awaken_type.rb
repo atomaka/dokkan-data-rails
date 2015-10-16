@@ -1,5 +1,6 @@
 class AwakenType < ActiveRecord::Base
   has_paper_trail
 
-  validates :name, presence: true
+  validates :name, presence: true,
+                   uniqueness: { case_sensitive: false }
 end
