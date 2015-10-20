@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020212132) do
+ActiveRecord::Schema.define(version: 20151020220202) do
 
   create_table "awaken_types", force: :cascade do |t|
     t.string   "name"
@@ -128,16 +128,16 @@ ActiveRecord::Schema.define(version: 20151020212132) do
   end
 
   create_table "stats", force: :cascade do |t|
-    t.integer  "min",           default: 0
-    t.integer  "max",           default: 0
-    t.integer  "awaken_min",    default: 0
-    t.integer  "awaken_max",    default: 0
-    t.integer  "state_type_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "min",          default: 0
+    t.integer  "max",          default: 0
+    t.integer  "awaken_min",   default: 0
+    t.integer  "awaken_max",   default: 0
+    t.integer  "stat_type_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "stats", ["state_type_id"], name: "index_stats_on_state_type_id"
+  add_index "stats", ["stat_type_id"], name: "index_stats_on_stat_type_id"
 
   create_table "super_attacks", force: :cascade do |t|
     t.string   "name"
