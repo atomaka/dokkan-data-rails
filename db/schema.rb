@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020220202) do
+ActiveRecord::Schema.define(version: 20151020212132) do
 
   create_table "awaken_types", force: :cascade do |t|
     t.string   "name"
