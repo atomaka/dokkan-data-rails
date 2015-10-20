@@ -14,6 +14,9 @@ class Admin::CardsController < Admin::BaseController
 
   def new
     @card = Card.new
+    @card.build_hp_stat
+    @card.build_atk_stat
+    @card.build_def_stat
 
     authorize @card
   end
@@ -60,11 +63,16 @@ class Admin::CardsController < Admin::BaseController
   private
 
   def card_params
-    params.require(:card).permit(:title, :character_id, :rarity_id, :type_id,
-                                 :leader_skill_id, :passive_skill_id, :verified,
-                                 :super_attack_id, :dokkan_id, :gameid,
-                                 :awaken_type_id, :dokkan_id,
-                                 evidence_ids: [], link_ids: [])
+    params
+      .require(:card)
+      .permit(:title, :character_id, :rarity_id, :type_id, :leader_skill_id,
+              :passive_skill_id, :verified, :super_attack_id, :dokkan_id,
+              :gameid, :awaken_type_id, :dokkan_id, evidence_ids: [],
+              link_ids: [],
+              hp_stat_attributes: [:min, :max, :awaken_min, :awaken_max],
+              atk_stat_attributes: [:min, :max, :awaken_min, :awaken_max],
+              def_stat_attributes: [:min, :max, :awaken_min, :awaken_max]
+             )
   end
 
   def set_card

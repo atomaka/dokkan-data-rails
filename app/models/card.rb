@@ -14,6 +14,14 @@ class Card < ActiveRecord::Base
 
   has_many :evidences
 
+  belongs_to :hp_stat, class_name: 'Stat'
+  belongs_to :atk_stat, class_name: 'Stat'
+  belongs_to :def_stat, class_name: 'Stat'
+
+  accepts_nested_attributes_for :hp_stat
+  accepts_nested_attributes_for :atk_stat
+  accepts_nested_attributes_for :def_stat
+
   delegate :name, to: :character, prefix: false
 
   validates :title, presence: true

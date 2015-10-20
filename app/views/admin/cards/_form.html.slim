@@ -27,19 +27,58 @@
         = f.association :dokkan_card, collection: Card.includes(:character).all, label_method: :full_name
     .row
       .col-md-12
+        = f.label 'Health Points'
+    .row
+      = f.simple_fields_for :hp_stat do |hp|
+        .col-md-3
+          = hp.input :min
+        .col-md-3
+          = hp.input :max
+        .col-md-3
+          = hp.input :awaken_min
+        .col-md-3
+          = hp.input :awaken_max
+    .row
+      .col-md-12
+        = f.label 'Attack'
+    .row
+      = f.simple_fields_for :atk_stat do |hp|
+        .col-md-3
+          = hp.input :min
+        .col-md-3
+          = hp.input :max
+        .col-md-3
+          = hp.input :awaken_min
+        .col-md-3
+          = hp.input :awaken_max
+    .row
+      .col-md-12
+        = f.label 'Defense'
+    .row
+      = f.simple_fields_for :def_stat do |hp|
+        .col-md-3
+          = hp.input :min
+        .col-md-3
+          = hp.input :max
+        .col-md-3
+          = hp.input :awaken_min
+        .col-md-3
+          = hp.input :awaken_max
+    .row
+      .col-md-12
         = f.label :links
         div
           = f.association :links, as: :check_boxes, item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false
     .row
       .col-md-12
-      = f.label :evidences
-      - unless @card.new_record?
+        = f.label :evidences
+        - unless @card.new_record?
+          div
+            span Current
+            = f.association :evidences, as: :check_boxes, collection: Evidence.for(@card), item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false, label_method: lambda { |evidence| evidence_checkbox_label(evidence) }
         div
-          span Current
-          = f.association :evidences, as: :check_boxes, collection: Evidence.for(@card), item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false, label_method: lambda { |evidence| evidence_checkbox_label(evidence) }
-      div
-        span Unused
-        = f.association :evidences, as: :check_boxes, collection: Evidence.unused, item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false, label_method: lambda { |evidence| evidence_checkbox_label(evidence) }
+          span Unused
+          = f.association :evidences, as: :check_boxes, collection: Evidence.unused, item_wrapper_tag: nil, item_label_class: 'checkbox-inline', label: false, label_method: lambda { |evidence| evidence_checkbox_label(evidence) }
     .row
       .col-md-12
         = f.label 'Verification'
