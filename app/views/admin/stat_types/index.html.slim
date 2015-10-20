@@ -1,0 +1,29 @@
+- if policy(:stat_type).new?
+  .row
+    .col-md-12
+      .pull-right
+        = link_to 'New Stat Type', new_admin_stat_type_path, class: 'btn btn-primary'
+
+.row
+  .col-md-12
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Description
+          th Actions
+      tbody
+        - @stat_types.each do |stat_type|
+          tr
+            td= stat_type.name
+            td= stat_type.description
+            td
+              - if policy(:stat_type).edit?
+                = link_to glyph('edit', classes: 'control-icon'), edit_admin_stat_type_path(stat_type)
+              - if policy(:stat_type).destroy?
+                = link_to glyph('trash', classes: 'control-icon'), admin_stat_type_path(stat_type), method: :delete
+
+- if policy(:stat_type).new?
+  .row
+    .col-md-12
+      = link_to 'New Stat Type', new_admin_stat_type_path, class: 'btn btn-primary'

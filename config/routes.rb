@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :links
     resources :passive_skills
     resources :rarities
+    resources :stat_types
     resources :super_attacks
     resources :types
     resources :users, except: [:new, :create]

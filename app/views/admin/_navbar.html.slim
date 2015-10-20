@@ -41,6 +41,8 @@
                 li= link_to 'Awaken Types', admin_awaken_types_path
               - if policy(:rarity).index?
                 li= link_to 'Rarities', admin_rarities_path
+              - if policy(:stat_type).index?
+                li= link_to 'Stat Types', admin_stat_types_path
               - if policy(:type).index?
                 li= link_to 'Types', admin_types_path
         - if policy(:user).index?
