@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014155435) do
+ActiveRecord::Schema.define(version: 20151020212132) do
 
   create_table "awaken_types", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(version: 20151014155435) do
     t.datetime "updated_at",                           null: false
     t.integer  "awaken_type_id"
     t.boolean  "verified",         default: false
+    t.integer  "hp_stat_id"
+    t.integer  "atk_stat_id"
+    t.integer  "def_stat_id"
   end
 
   add_index "cards", ["awaken_type_id"], name: "index_cards_on_awaken_type_id"
@@ -116,6 +119,25 @@ ActiveRecord::Schema.define(version: 20151014155435) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "stat_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer  "min",           default: 0
+    t.integer  "max",           default: 0
+    t.integer  "awaken_min",    default: 0
+    t.integer  "awaken_max",    default: 0
+    t.integer  "state_type_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "stats", ["state_type_id"], name: "index_stats_on_state_type_id"
 
   create_table "super_attacks", force: :cascade do |t|
     t.string   "name"

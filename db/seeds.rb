@@ -19,6 +19,12 @@ awaken_types = [
   'Extreme',
 ]
 
+stat_types = [
+  ['HP', 'Health Points'],
+  ['ATK', 'Attack'],
+  ['DEF', 'Defense'],
+]
+
 roles = [
   :admin,
   :moderator,
@@ -40,4 +46,8 @@ end
 
 roles.each do |role|
   Role.where({ name: role }, without_protection: true).first_or_create
+end
+
+stat_types.each do |name, description|
+  StatType.create(name: name, description: description)
 end
