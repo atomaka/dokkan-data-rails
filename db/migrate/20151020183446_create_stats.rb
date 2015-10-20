@@ -5,7 +5,7 @@ class CreateStats < ActiveRecord::Migration
       t.integer :max
       t.integer :awaken_min
       t.integer :awaken_make
-      t.references :state_type, index: true, foreign_key: true
+      t.references :stat_type, index: true, foreign_key: true
 
       t.timestamps null: false
     end
