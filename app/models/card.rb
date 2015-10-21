@@ -1,7 +1,7 @@
 class Card < ActiveRecord::Base
   has_paper_trail
 
-  before_save :set_stat_types
+  after_create :set_stat_types
 
   belongs_to :character
   belongs_to :rarity
@@ -55,5 +55,7 @@ class Card < ActiveRecord::Base
     self.hp_stat.stat_type_id = 1
     self.atk_stat.stat_type_id = 2
     self.def_stat.stat_type_id = 3
+
+    self.save
   end
 end
