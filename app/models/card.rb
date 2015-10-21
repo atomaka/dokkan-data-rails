@@ -1,6 +1,8 @@
 class Card < ActiveRecord::Base
   has_paper_trail
 
+  before_save :set_stat_types
+
   belongs_to :character
   belongs_to :rarity
   belongs_to :type
@@ -45,5 +47,13 @@ class Card < ActiveRecord::Base
 
   def icon
     "card_#{gameid}_thumb.png"
+  end
+
+  private
+
+  def set_stat_types
+    self.hp_stat.stat_type_id = 1
+    self.atk_stat.stat_type_id = 2
+    self.def_stat.stat_type_id = 3
   end
 end

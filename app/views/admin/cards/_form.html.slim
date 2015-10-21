@@ -29,41 +29,41 @@
       .col-md-12
         = f.label 'Health Points'
     .row
-      = f.simple_fields_for :hp_stat do |hp|
+      = f.simple_fields_for :hp_stat do |h|
         .col-md-3
-          = hp.input :min
+          = h.input :min
         .col-md-3
-          = hp.input :max
+          = h.input :max
         .col-md-3
-          = hp.input :awaken_min
+          = h.input :awaken_min
         .col-md-3
-          = hp.input :awaken_max
+          = h.input :awaken_max
     .row
       .col-md-12
         = f.label 'Attack'
     .row
-      = f.simple_fields_for :atk_stat do |hp|
+      = f.simple_fields_for :atk_stat do |a|
         .col-md-3
-          = hp.input :min
+          = a.input :min
         .col-md-3
-          = hp.input :max
+          = a.input :max
         .col-md-3
-          = hp.input :awaken_min
+          = a.input :awaken_min
         .col-md-3
-          = hp.input :awaken_max
+          = a.input :awaken_max
     .row
       .col-md-12
         = f.label 'Defense'
     .row
-      = f.simple_fields_for :def_stat do |hp|
+      = f.simple_fields_for :def_stat do |d|
         .col-md-3
-          = hp.input :min
+          = d.input :min
         .col-md-3
-          = hp.input :max
+          = d.input :max
         .col-md-3
-          = hp.input :awaken_min
+          = d.input :awaken_min
         .col-md-3
-          = hp.input :awaken_max
+          = d.input :awaken_max
     .row
       .col-md-12
         = f.label :links
