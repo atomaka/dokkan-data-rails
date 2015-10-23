@@ -6,4 +6,8 @@ class PassiveSkill < ActiveRecord::Base
                           uniqueness: { scope: :name }
 
   default_scope { order(:name) }
+
+  def full
+    "#{name} - #{description}"
+  end
 end
