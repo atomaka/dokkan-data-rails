@@ -12,6 +12,10 @@ namespace :importer do
     PaperTrail.whodunnit = 1
 
     cards = JSON.parse(open('http://dbzv2.renzy.land/action/cards') { |f| f.read })
+    links = JSON.parse(open('http://api.dbzdokk.com/links') { |f| f.read })
+    links = Hash[links.map { |link| [link['name'], link['description']] }]
+    cards2 = JSON.parse(open('http://api.dbzdokk.com/characters') { |f| f.read })
+    passives = Hash[cards2.map { |card| [card['gameid'], card['passive']] }]
 
     cards.each do |c|
 
@@ -36,19 +40,24 @@ namespace :importer do
       card['super_attack'] = SuperAttack
                               .where(
                                 name: c['super_atk']['name'],
-                                description: c['super_atk']['desc'])
+                                description: c['super_atk']['desc']
+                              )
                               .first_or_create
+      passive_skill_description = !c['passive_skill']['decsc'].blank? ? c['passive_skill']['decsc'] : passives[card['gameid']]
       passive_skill = PassiveSkill
                               .where(
                                 name: c['passive_skill']['name'],
-                                description: c['passive_skill']['desc'])
-                              .first_or_initialize
+                                description: passive_skill_description
+                              ).first_or_initialize
       card['awaken_type'] = AwakenType.first
       card['passive_skill'] = passive_skill
       passive_skill.save(validate: false)
       card['links'] = Array.new
       c['link_skill'].each do |link|
-        card['links'] << Link.where(name: link).first_or_create
+        card['links'] << Link.where(
+                          name: link,
+                          description: links[link]
+                         ).first_or_create
       end
 
       card['hp_stat'] = Stat.create(
