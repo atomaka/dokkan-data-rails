@@ -3,7 +3,6 @@ require 'json'
 require 'pp'
 
 namespace :importer do
-  rarities = ['n', 'r', 'sr', 'ssr', 'ur']
   types = [4, 3, 2, 5, 1]
   awaken_type = [1, 2]
 
@@ -14,26 +13,24 @@ namespace :importer do
     cards = JSON.parse(open('http://dbzv2.renzy.land/action/cards') { |f| f.read })
     links = JSON.parse(open('http://api.dbzdokk.com/links') { |f| f.read })
     links = Hash[links.map { |link| [link['name'], link['description']] }]
-    cards2 = JSON.parse(open('http://api.dbzdokk.com/characters') { |f| f.read })
-    passives = Hash[cards2.map { |card| [card['gameid'], card['passive']] }]
 
     cards.each do |c|
 
       card = Hash.new
+
+      # easy stuff
       card['gameid'] = c['id']
       card['title'] = c['name']['suffix']
+      card['awaken_type'] = AwakenType.first
+
+      # relational stuff
+      card['type'] = Type.where(id: types[c['type']['suffix'].to_i]).first
       card['character'] = Character
                             .where(name: c['name']['prefix'])
                             .first_or_create
       card['rarity'] = Rarity
                             .where('lower(name) = ?', (c['rarity']['native']))
                             .first
-      card['type'] = Type.where(id: types[c['type']['suffix'].to_i]).first
-
-      if c['type']['prefix']
-        card['awaken_type'] = types[c['type']['prefix'].to_i]
-      end
-
       card['leader_skill'] = LeaderSkill
                               .where(description: c['leader_skill'])
                               .first_or_create
@@ -43,15 +40,16 @@ namespace :importer do
                                 description: c['super_atk']['desc']
                               )
                               .first_or_create
-      passive_skill_description = !c['passive_skill']['decsc'].blank? ? c['passive_skill']['decsc'] : passives[card['gameid']]
-      passive_skill = PassiveSkill
+
+      # passives (in case we don't have the description
+      card['passive_skill'] = PassiveSkill
                               .where(
                                 name: c['passive_skill']['name'],
-                                description: passive_skill_description
+                                description: c['passive_skill']['desc']
                               ).first_or_initialize
-      card['awaken_type'] = AwakenType.first
-      card['passive_skill'] = passive_skill
-      passive_skill.save(validate: false)
+      card['passive_skill'].save(validate: false)
+
+      # links (need links description from my store, some missing, but fine)
       card['links'] = Array.new
       c['link_skill'].each do |link|
         card['links'] << Link.where(
@@ -60,17 +58,27 @@ namespace :importer do
                          ).first_or_create
       end
 
+      # stats
       card['hp_stat'] = Stat.create(
-                            min: c['stats']['native']['hp']['min'] || 0,
-                            stat_type_id: 1
+        min: c['stats']['native']['hp']['min'] || 0,
+        max: c['stats']['native']['hp']['max'] || 0,
+        awaken_min: c['stats']['awoken']['hp']['min'] || 0,
+        awaken_max: c['stats']['awoken']['hp']['max'] || 0,
+        stat_type_id: 1
       )
       card['atk_stat'] = Stat.create(
-                            min: c['stats']['native']['atk']['min'] || 0,
-                            stat_type_id: 2
+        min: c['stats']['native']['atk']['min'] || 0,
+        max: c['stats']['native']['atk']['max'] || 0,
+        awaken_min: c['stats']['awoken']['atk']['min'] || 0,
+        awaken_max: c['stats']['awoken']['atk']['max'] || 0,
+        stat_type_id: 2
       )
       card['def_stat'] = Stat.create(
-                            min: c['stats']['native']['def']['min'] || 0,
-                            stat_type_id: 3
+        min: c['stats']['native']['def']['min'] || 0,
+        max: c['stats']['native']['def']['max'] || 0,
+        awaken_min: c['stats']['awoken']['def']['min'] || 0,
+        awaken_max: c['stats']['awoken']['def']['max'] || 0,
+        stat_type_id: 3
       )
 
       c = Card.create(card).save(validate: false)
