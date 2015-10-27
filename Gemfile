@@ -18,6 +18,7 @@ gem 'omniauth-reddit', :git => 'git://github.com/jackdempsey/omniauth-reddit.git
 gem 'active_model_serializers'
 gem 'paper_trail'
 gem 'paperclip', '~> 4.3'
+gem 'rack-cors'
 
 # AUTHORIZATION
 gem 'pundit'
