@@ -3,4 +3,6 @@ class LeaderSkill < ActiveRecord::Base
 
   validates :description, presence: true,
                           uniqueness: { case_sensitive: false }
+
+  default_scope { order(:description) }
 end
