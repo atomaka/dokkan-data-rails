@@ -1,7 +1,12 @@
 class Api::V1::CardsController < Api::V1::BaseController
   before_action :set_card, only: [:show]
   def index
-    render json: Card.all, root: false
+    @cards = Card.includes(:character, :rarity, :type, :leader_skill,
+                           :passive_skill, :super_attack, :awaken_type,
+                           :dokkan_card, :hp_stat, :atk_stat, :def_stat,
+                           :links)
+
+    render json: @cards, root: false
   end
 
   def show
