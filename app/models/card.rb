@@ -12,7 +12,7 @@ class Card < ActiveRecord::Base
   belongs_to :awaken_type
   belongs_to :dokkan_card, class_name: 'Card', foreign_key: :dokkan_id
 
-  has_and_belongs_to_many :links
+  has_and_belongs_to_many :links, counter_cache: true
 
   has_many :evidences
 

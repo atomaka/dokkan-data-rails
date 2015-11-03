@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020212132) do
+ActiveRecord::Schema.define(version: 20151103193404) do
 
   create_table "awaken_types", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20151020212132) do
     t.integer  "hp_stat_id"
     t.integer  "atk_stat_id"
     t.integer  "def_stat_id"
+    t.integer  "links_count",      default: 0,         null: false
   end
 
   add_index "cards", ["awaken_type_id"], name: "index_cards_on_awaken_type_id"
