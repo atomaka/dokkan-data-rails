@@ -37,6 +37,8 @@ class Card < ActiveRecord::Base
 
   default_scope { order(:gameid) }
 
+  scope :new_this_week, -> { where('created_at > ?', 1.week.ago) }
+
   def dokkan?
     dokkan_id != nil
   end
