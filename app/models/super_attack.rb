@@ -10,4 +10,8 @@ class SuperAttack < ActiveRecord::Base
   def full
     "#{name} - #{description}"
   end
+
+  def self.issues
+    SuperAttack.where("name = '' OR description = ''")
+  end
 end

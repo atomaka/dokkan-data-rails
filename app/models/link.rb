@@ -7,4 +7,8 @@ class Link < ActiveRecord::Base
                    uniqueness: true
 
   default_scope { order(:name) }
+
+  def self.issues
+    Link.where(description: nil)
+  end
 end

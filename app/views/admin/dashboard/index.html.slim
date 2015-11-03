@@ -26,3 +26,31 @@
         .pull-left View Details
         .pull-right= glyph 'circle-arrow-right'
         .clearfix
+.col-md-6
+  .panel.panel-default
+    .panel-heading Card Stats
+    .panel-body
+      .list-group
+        a.list-group-item
+          = 'Total'
+          span.pull-right.text-muted= Card.count
+        a.list-group-item
+          = 'Verified'
+          span.pull-right.text-muted= Card.verified.count
+.col-md-6
+  .panel.panel-default
+    .panel-heading Potential Issues
+    .panel-body
+      .list-group
+        a.list-group-item
+          = 'Cards Without Links'
+          span.pull-right.text-muted= Card.where('links_count < 1').count
+        a.list-group-item
+          = 'Passive Skills missing information'
+          span.pull-right.text-muted= PassiveSkill.issues.count
+        a.list-group-item
+          = 'Super Attacks missing information'
+          span.pull-right.text-muted= SuperAttack.issues.count
+        a.list-group-item
+          = 'Links missing information'
+          span.pull-right.text-muted= Link.issues.count

@@ -13,4 +13,8 @@ class PassiveSkill < ActiveRecord::Base
   def display_name
     name.present? ? name : 'UNNAMED'
   end
+
+  def self.issues
+    PassiveSkill.where("name = '' OR description = ''")
+  end
 end

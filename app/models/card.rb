@@ -49,6 +49,10 @@ class Card < ActiveRecord::Base
     "card_#{gameid}_thumb.png"
   end
 
+  def self.verified
+    Card.where(verified: true)
+  end
+
   private
 
   def set_stat_types
