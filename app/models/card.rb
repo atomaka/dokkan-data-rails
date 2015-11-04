@@ -35,8 +35,6 @@ class Card < ActiveRecord::Base
   validates :type, presence: true
   validates :awaken_type, presence: true
 
-  default_scope { order(:gameid) }
-
   scope :new_this_week, -> { where('created_at > ?', 1.week.ago) }
 
   def dokkan?
