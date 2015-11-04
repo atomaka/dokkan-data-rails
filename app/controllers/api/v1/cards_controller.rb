@@ -4,7 +4,7 @@ class Api::V1::CardsController < Api::V1::BaseController
     @cards = Card.includes(:character, :rarity, :type, :leader_skill,
                            :passive_skill, :super_attack, :awaken_type,
                            :dokkan_card, :hp_stat, :atk_stat, :def_stat,
-                           :links)
+                           :links).all.order(:gameid)
 
     render json: @cards, root: false
   end
