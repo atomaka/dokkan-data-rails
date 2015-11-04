@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :versions, only: [:show]
   end
 
-  constraints subdomain: 'api' do
+  constraints subdomain: /^api(\.|$)/ do
     namespace :api, path: nil do
       namespace :v1 do
         resources :cards, only: [:index, :show]
