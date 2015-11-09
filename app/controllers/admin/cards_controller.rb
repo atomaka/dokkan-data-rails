@@ -72,7 +72,8 @@ class Admin::CardsController < Admin::BaseController
               link_ids: [],
               hp_stat_attributes: [:min, :max, :awaken_min, :awaken_max],
               atk_stat_attributes: [:min, :max, :awaken_min, :awaken_max],
-              def_stat_attributes: [:min, :max, :awaken_min, :awaken_max]
+              def_stat_attributes: [:min, :max, :awaken_min, :awaken_max],
+              cost_stat_attributes: [:min, :max, :awaken_min, :awaken_max]
              )
   end
 
