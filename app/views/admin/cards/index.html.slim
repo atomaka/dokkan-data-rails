@@ -11,14 +11,16 @@
         tr
           th Name
           th Title
-          th Updated
+          th Type
+          th Rarity
           th Actions
       tbody
         - @cards.each do |card|
           tr
             td= card.name
             td= card.title
-            td= card.updated_at
+            td= card.type.name
+            td= card.rarity.name
             td
               - if policy(:card).edit?
                 = link_to glyph('edit', classes: 'control-icon'), edit_admin_card_path(card)
