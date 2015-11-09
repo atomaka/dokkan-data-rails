@@ -3,7 +3,10 @@ class Admin::CardsController < Admin::BaseController
   after_action :verify_authorized
 
   def index
-    @cards = Card.includes(:character).all.order(updated_at: :desc)
+    @cards = Card
+              .includes(:character, :type, :rarity)
+              .all
+              .order(updated_at: :desc)
 
     authorize Card
   end
