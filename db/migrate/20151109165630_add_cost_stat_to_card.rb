@@ -3,6 +3,7 @@ class AddCostStatToCard < ActiveRecord::Migration
     add_column :cards, :cost_stat_id, :integer
 
     PaperTrail.whodunnit = 1
+    StatType.create(name: 'Cost', description: 'Cost')
     Card.all.each do |c|
       c.cost_stat = Stat.new(stat_type_id: 4)
       c.save
