@@ -23,6 +23,7 @@ stat_types = [
   ['HP', 'Health Points'],
   ['ATK', 'Attack'],
   ['DEF', 'Defense'],
+  ['Cost', 'Cost'],
 ]
 
 roles = [

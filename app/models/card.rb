@@ -19,10 +19,12 @@ class Card < ActiveRecord::Base
   belongs_to :hp_stat, class_name: 'Stat'
   belongs_to :atk_stat, class_name: 'Stat'
   belongs_to :def_stat, class_name: 'Stat'
+  belongs_to :cost_stat, class_name: 'Stat'
 
   accepts_nested_attributes_for :hp_stat
   accepts_nested_attributes_for :atk_stat
   accepts_nested_attributes_for :def_stat
+  accepts_nested_attributes_for :cost_stat
 
   delegate :name, to: :character, prefix: false
 
@@ -59,6 +61,7 @@ class Card < ActiveRecord::Base
     self.hp_stat.stat_type_id = 1
     self.atk_stat.stat_type_id = 2
     self.def_stat.stat_type_id = 3
+    self.cost_stat.stat_type_id = 4
 
     self.save
   end

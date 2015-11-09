@@ -17,6 +17,7 @@ class Admin::CardsController < Admin::BaseController
     @card.build_hp_stat
     @card.build_atk_stat
     @card.build_def_stat
+    @card.build_cost_stat
 
     authorize @card
   end
