@@ -1,7 +1,7 @@
 class Api::V1::CardSerializer < Api::V1::BaseSerializer
   attributes :character, :rarity, :type, :leader_skill, :passive_skill,
              :super_attack, :awaken_type, :dokkan_card, :links, :title,
-             :gameid, :hp_stat, :atk_stat, :def_stat
+             :gameid, :hp_stat, :atk_stat, :def_stat, :cost_stat
 
   private
 
@@ -61,6 +61,10 @@ class Api::V1::CardSerializer < Api::V1::BaseSerializer
 
   def def_stat
     stat_formatter(object.def_stat)
+  end
+
+  def cost_stat
+    stat_formatter(object.cost_stat)
   end
 
   private
